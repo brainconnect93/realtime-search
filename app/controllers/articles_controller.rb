@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
     query = params[:query]
 
     if query.present?
-      @articles = Article.search(query)
+      @articles = Article.where('title LIKE ?', "%#{query}%")
 
       create_search(query, current_user.id) if @articles.any? && current_user
     else
