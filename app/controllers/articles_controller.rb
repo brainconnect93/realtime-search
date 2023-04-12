@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
     query = params[:query]
 
     if query.present?
-      @articles = Article.search_by_titlr(query)
+      @articles = Article.search(query)
 
       create_search(query, current_user.id) if @articles.any? && current_user
     else
